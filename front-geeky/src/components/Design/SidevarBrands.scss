@@ -1,0 +1,17 @@
+.btn-brand-sidevar {
+	display: flex;
+	text-align: center;
+	align-items: center;
+	padding-left: 40px;
+
+	.btn {
+		color: black;
+		font-weight: bold;
+	}
+}
+
+.title-sidevar {
+	width: 100%;
+	padding-bottom: 20px;
+	border-bottom: 1px solid rgba(201, 196, 196, 0.372);
+}

@@ -1,0 +1,11 @@
+.categori{
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    background: rgba(246, 245, 245, 0.453);
+    padding-top: 50px;
+    min-height: 300px;
+
+    .product-list{
+        text-decoration: none;
+    }
+}

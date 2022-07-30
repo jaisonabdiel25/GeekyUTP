@@ -1,0 +1,21 @@
+.card-componet{
+    text-decoration: none;
+
+    .card{
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    }
+
+    .product-list{
+        text-decoration: none;
+    }
+
+    .product-card-detail{
+        padding-left: 10px;
+        color: black;
+
+        p{
+            font-style: italic;
+        }
+    }
+}
+

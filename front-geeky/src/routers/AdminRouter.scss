@@ -1,0 +1,19 @@
+.admin-router {
+	padding: 90px;
+	background: rgb(246, 245, 245);
+
+	.segment {
+		font-family: 'Roboto', sans-serif;
+		display: flex;
+		flex-direction: column;
+		width: 65%;
+		background: rgb(255, 255, 255);
+		padding: 40px 40px;
+		border-radius: 5px;
+		height: auto;
+	}
+
+	.sidebar {
+		width: 35%;
+	}
+}

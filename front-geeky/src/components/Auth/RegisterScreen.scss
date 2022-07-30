@@ -1,0 +1,50 @@
+.register-login {
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	background: rgb(255, 255, 255);
+	padding: 40px;
+	border-radius: 5px;
+
+	.form-login {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
+	.title {
+		color: rgb(44, 44, 44);
+		margin-bottom: 40px;
+		font-weight: 900;
+	}
+
+	.input {
+		border-radius: 5px;
+		border: 1px solid rgb(202, 202, 202);
+		transition: border 0.3s ease;
+		padding: 8px;
+	}
+
+	.input:focus {
+		outline: none;
+		border: 1px solid rgb(252, 177, 2);
+	}
+
+	label {
+		padding-top: 20px;
+	}
+	.span-password {
+		color: rgb(255, 132, 0);
+	}
+
+	.btn-login {
+		margin-top: 50px;
+		color: white;
+	}
+
+	.btn-login:hover {
+		color: white;
+	}
+}
