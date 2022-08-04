@@ -5,7 +5,7 @@ import Accordion from 'react-bootstrap/Accordion';
 import Swal from 'sweetalert2';
 import { getComentsAction, newComentsAction } from '../../Actions/Thunks/Coments';
 import { PaymentActions, sendPaymentActions } from '../../Actions/Thunks/Payment';
-import { getProductAction, getProductForBrandsAction } from '../../Actions/Thunks/Product';
+import { getProductAction, getProductForBrandsAction, getProductsAction } from '../../Actions/Thunks/Product';
 import { Images } from './Images';
 import { ProductCard } from './ProductCard';
 import './SCSS/ProductScreen.scss';
@@ -43,7 +43,7 @@ export const ProductSreen = () => {
 	useEffect(() => {
 		if (id) dispatch(getProductAction(id));
 		const idBrand = localStorage.getItem('idBrand');
-		dispatch(getProductForBrandsAction(idBrand));
+		dispatch(getProductsAction());
 	}, [id]);
 
 	useEffect(() => {

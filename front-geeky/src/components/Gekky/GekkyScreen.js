@@ -2,19 +2,17 @@ import React, { useEffect } from 'react';
 import './SCSS/GeekyScreen.scss';
 import Carousel from 'react-bootstrap/Carousel';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductForUIAction } from '../../Actions/Thunks/Product';
+import { getProductForUIAction, getProductsAction } from '../../Actions/Thunks/Product';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProductCard } from './ProductCard';
 
 export const GekkyScreen = () => {
-	const id = '62c604f08fd8a56869171bb4';
-
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		dispatch(getProductForUIAction(id));
-	}, [id]);
+		dispatch(getProductsAction());
+	}, []);
 
 	const product = useSelector((state) => state.product.products);
 

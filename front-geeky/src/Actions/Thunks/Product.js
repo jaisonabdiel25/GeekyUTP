@@ -37,45 +37,6 @@ export const newProductAction = (product, cb, files, succes) => {
 	};
 };
 
-export const getProductForBrandsAction = (id) => {
-	return async (dispatch) => {
-		dispatch(getProductForBrabds());
-		try {
-			const { data } = await clientAxios.get(`/products/${id}`);
-			dispatch(getProductForBrandsReady(data.products));
-		} catch (error) {
-			console.log(error.response.data.msg);
-			dispatch(getProductForBrandsError(true));
-		}
-	};
-};
-
-export const getProductForUIAction = (id) => {
-	return async (dispatch) => {
-		dispatch(getProductForBrabds());
-		try {
-			const { data } = await clientAxios.get(`/products/getProductsUI/${id}`);
-			dispatch(getProductForBrandsReady(data.products));
-		} catch (error) {
-			console.log(error.response.data.msg);
-			dispatch(getProductForBrandsError(true));
-		}
-	};
-};
-
-export const getProductForCategoriAction = (id) => {
-	return async (dispatch) => {
-		dispatch(getProductForBrabds());
-		try {
-			const { data } = await clientAxios.get(`/products/getProductsForCategori/${id}`);
-			dispatch(getProductForBrandsReady(data.products));
-		} catch (error) {
-			console.log(error.response.data.msg);
-			dispatch(getProductForBrandsError(true));
-		}
-	};
-};
-
 export const getProductAction = (id) => {
 	return async (dispatch) => {
 		dispatch(getProduct());

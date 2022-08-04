@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
-import { getProductForCategoriAction } from '../../Actions/Thunks/Product';
+import { getProductsAction } from '../../Actions/Thunks/Product';
 import { ProductCard } from './ProductCard';
 import './SCSS/CategoriScreen.scss';
 
@@ -12,7 +12,7 @@ export const CategoriScreen = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		dispatch(getProductForCategoriAction(id));
+		dispatch(getProductsAction());
 	}, [id]);
 
 	const product = useSelector((state) => state.product.products);
