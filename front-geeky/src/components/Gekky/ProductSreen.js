@@ -7,9 +7,9 @@ import { getComentsAction, newComentsAction } from '../../Actions/Thunks/Coments
 import { PaymentActions, sendPaymentActions } from '../../Actions/Thunks/Payment';
 import { getProductAction, getProductsAction } from '../../Actions/Thunks/Product';
 import { Images } from './Images';
-import { ProductCard } from './ProductCard';
 import './SCSS/ProductScreen.scss';
 import { Coments } from './Coments';
+import { ProductsRandom } from './ProductsRandom';
 
 export const ProductSreen = () => {
 	const { id } = useParams();
@@ -19,18 +19,11 @@ export const ProductSreen = () => {
 
 	const [coment, setComent] = useState();
 	const [comentReview, setComentReview] = useState([]);
-	const [productsRandom, setProductsRandom] = useState([]);
 
 	const { uid, nombre, brand, estado, inventario, precio, descripcion, img, usuario } = useSelector((store) => store.product.product);
 
 	useEffect(() => {
 		if (id) dispatch(getProductAction(id));
-		dispatch(getProductsAction());
-		const filtro = products.filter((product) => {
-			return product.brand._id.includes(brand._id);
-		});
-		setProductsRandom(filtro);
-		console.log(brand);
 	}, [id]);
 
 	useEffect(() => {
@@ -69,11 +62,6 @@ export const ProductSreen = () => {
 	const sendPayment = () => {
 		dispatch(PaymentActions());
 		window.open(urlPayment.url, '_blank')?.focus();
-	};
-
-	const getProduct = (id) => {
-		navigate(`/product/${id}`);
-		window.location.reload();
 	};
 
 	const sweetAlert = () => {
@@ -152,26 +140,7 @@ export const ProductSreen = () => {
 			<div className='poduct-info mt-5'>
 				<div className='product-randoms'>
 					<h4 className='text-uppercase'>Tambien te pordria gustar lo siguiente</h4>
-					<div className='d-flex product'>
-						{productsRandom
-							? productsRandom.map((product, index) => (
-									<>
-										{index < 5 ? (
-											<Link
-												className='product-list'
-												to={`/product/${product.uid}`}
-												key={product.uid}
-												onClick={() => getProduct(product.uid)}
-											>
-												<ProductCard product={product} />
-											</Link>
-										) : (
-											''
-										)}
-									</>
-							  ))
-							: ''}
-					</div>
+					<div className='d-flex product'>{products ? <ProductsRandom brand={brand} /> : ''}</div>
 				</div>
 				<div className='d-flex mt-3'>
 					<div className='product-detail w-50'>

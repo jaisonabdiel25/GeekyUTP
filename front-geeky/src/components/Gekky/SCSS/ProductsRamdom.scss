@@ -1,0 +1,11 @@
+.products-randoms {
+	min-height: 300px;
+
+	.product {
+		flex-wrap: wrap;
+	}
+
+	.product-list {
+		text-decoration: none;
+	}
+}
