@@ -5,54 +5,42 @@ import Accordion from 'react-bootstrap/Accordion';
 import Swal from 'sweetalert2';
 import { getComentsAction, newComentsAction } from '../../Actions/Thunks/Coments';
 import { PaymentActions, sendPaymentActions } from '../../Actions/Thunks/Payment';
-import { getProductAction, getProductForBrandsAction, getProductsAction } from '../../Actions/Thunks/Product';
+import { getProductAction, getProductsAction } from '../../Actions/Thunks/Product';
 import { Images } from './Images';
 import { ProductCard } from './ProductCard';
 import './SCSS/ProductScreen.scss';
 import { Coments } from './Coments';
 
 export const ProductSreen = () => {
-	const [coment, setComent] = useState();
-	const [comentReview, setComentReview] = useState([]);
 	const { id } = useParams();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	let timerInterval;
-	const { userDB, productCount } = JSON.parse(localStorage.getItem('userStorage'));
-	console.log(productCount, ' productos vendidos');
 
-	const {
-		uid,
-		nombre,
-		categoria,
-		brand,
-		estado,
-		inventario,
-		metodoentrega,
-		subcategoria,
-		ubicacion,
-		tipoVenta,
-		precio,
-		modelo,
-		descripcion,
-		img,
-		usuario,
-		product,
-	} = useSelector((store) => store.product.product);
+	const [coment, setComent] = useState();
+	const [comentReview, setComentReview] = useState([]);
+	const [productsRandom, setProductsRandom] = useState([]);
+
+	const { uid, nombre, brand, estado, inventario, precio, descripcion, img, usuario } = useSelector((store) => store.product.product);
 
 	useEffect(() => {
 		if (id) dispatch(getProductAction(id));
-		const idBrand = localStorage.getItem('idBrand');
 		dispatch(getProductsAction());
+		const filtro = products.filter((product) => {
+			return product.brand._id.includes(brand._id);
+		});
+		setProductsRandom(filtro);
+		console.log(brand);
 	}, [id]);
 
 	useEffect(() => {
 		if (usuario) dispatch(getComentsAction(usuario));
-	}, [usuario]);
+	}, []);
 
+	const { userDB } = JSON.parse(localStorage.getItem('userStorage'));
 	const urlPayment = useSelector((store) => store.payment);
-	const randomProducts = useSelector((store) => store.product.products);
 	const coments = useSelector((store) => store.coments.coments);
+	const products = useSelector((store) => store.product.products);
 
 	useEffect(() => {
 		setComentReview(coments);
@@ -165,8 +153,8 @@ export const ProductSreen = () => {
 				<div className='product-randoms'>
 					<h4 className='text-uppercase'>Tambien te pordria gustar lo siguiente</h4>
 					<div className='d-flex product'>
-						{randomProducts
-							? randomProducts.map((product, index) => (
+						{productsRandom
+							? productsRandom.map((product, index) => (
 									<>
 										{index < 5 ? (
 											<Link

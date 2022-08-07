@@ -3,7 +3,6 @@ import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { es } from 'date-fns/locale';
 
 export const Coments = ({ coment }) => {
-	console.log(coment);
 	return (
 		<div className='d-flex flex-column my-3 py-3 coment-content w-100'>
 			<div className='mb-2'>
