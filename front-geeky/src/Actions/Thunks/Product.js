@@ -1,14 +1,13 @@
 import clientAxios from '../../config/axios';
 import {
 	newProduct,
-	newProductReady,
 	newProductError,
 	getProduct,
 	getProductReady,
 	getProductError,
-	getProductForBrabds,
-	getProductForBrandsReady,
-	getProductForBrandsError,
+	getProducts,
+	getProductsReady,
+	getProductsError,
 } from '../Product';
 import { uploadImage } from '../../firebase/config';
 
@@ -27,11 +26,9 @@ export const newProductAction = (product, cb, files, succes) => {
 				img: urlImageList,
 			};
 			succes();
-			const { data } = await clientAxios.post('/products', urlList);
-			console.log(data);
+			await clientAxios.post('/products', urlList);
 			cb();
 		} catch (error) {
-			console.log(error.response.data.msg);
 			dispatch(newProductError(true));
 		}
 	};
@@ -42,10 +39,8 @@ export const getProductAction = (id) => {
 		dispatch(getProduct());
 		try {
 			const { data } = await clientAxios.get(`/products/getProduct/${id}`);
-			console.log(data.product);
 			dispatch(getProductReady(data.product));
 		} catch (error) {
-			console.log(error.response.data.msg);
 			dispatch(getProductError(true));
 		}
 	};
@@ -53,14 +48,14 @@ export const getProductAction = (id) => {
 
 export const getProductsAction = () => {
 	return async (dispatch) => {
-		dispatch(getProductForBrabds());
+		dispatch(getProducts());
 		try {
-			const { data } = await clientAxios.get(`/products`);
-			console.log(data);
-			dispatch(getProductForBrandsReady(data.products));
+			const {
+				data: { products },
+			} = await clientAxios.get(`/products`);
+			dispatch(getProductsReady(products));
 		} catch (error) {
-			console.log(error.response.data.msg);
-			dispatch(getProductForBrandsError(true));
+			dispatch(getProductsError(true));
 		}
 	};
 };

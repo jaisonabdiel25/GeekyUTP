@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getProductsAction } from '../../Actions/Thunks/Product';
@@ -8,15 +8,20 @@ import './SCSS/Brands.scss';
 
 export const Brands = () => {
 	const { id } = useParams();
-	localStorage.setItem('idBrand', id);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	const [productsRender, setProductsRender] = useState([]);
+
+	const products = useSelector((state) => state.product.products);
+
 	useEffect(() => {
 		dispatch(getProductsAction());
+		const filtro = products.filter((product) => {
+			return product.brand._id.includes(id);
+		});
+		setProductsRender(filtro);
 	}, [id]);
-
-	const product = useSelector((state) => state.product.products);
 
 	const getProduct = (id) => {
 		navigate(`/product/${id}`);
@@ -24,8 +29,8 @@ export const Brands = () => {
 
 	return (
 		<div className='d-flex brands'>
-			{product.length ? (
-				product.map((product) => (
+			{productsRender.length ? (
+				productsRender.map((product) => (
 					<Link className='product-list' to={`/`} key={product.uid} onClick={() => getProduct(product.uid)}>
 						<ProductCard product={product} />
 					</Link>

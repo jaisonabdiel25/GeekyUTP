@@ -11,13 +11,14 @@ export const types = {
 	newProduct: '[Product] newProduct',
 	newProductReady: '[Product] newProductReady',
 	newProductError: '[Product] newProductError',
+
 	getProduct: '[Product] getProduct',
 	getProductReady: '[Product] getProductReady',
 	getProductError: '[Product] getProductError',
 
-	getProductForBrands: '[Product] getProductForBrands',
-	getProductForBrandsReady: '[Product] getProductForBrandsError',
-	getProductForBrandsError: '[Product] getProductForBrandsError',
+	getProducts: '[Product] getProducts',
+	getProductsReady: '[Product] getProductsReady',
+	getProductsError: '[Product] getProductsError',
 
 	uploadImage: '[Product] uploadImage',
 	uploadImageReady: '[Product] uploadImageuploadImageReady',
